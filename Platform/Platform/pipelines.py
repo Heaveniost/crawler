@@ -10,7 +10,7 @@ import json
 class WenZhengJsonPipeline(object):
 
 	def __init__(self):
-		self.f = open('Platform/Data/WenZheng1.json','w')
+		self.f = open('Platform/Data/WenZheng3.json','w')
 
 	def process_item(self, item, spider):
 		content = json.dumps(dict(item),ensure_ascii=False) + "\n"
