@@ -16,37 +16,37 @@ class SinaSpider(scrapy.Spider):
     	parentTitle = response.xpath("//div[@id='tab01']//h3/a/text()").extract()
     	parentUrls  = response.xpath("//div[@id='tab01']//h3/a/@href").extract()
 
-    	subTitle = response.xpath("//div[@id='tab01']//ul/li/a/text()").extract()
-    	subUrls  = response.xpath("//div[@id='tab01']//ul/li/a/@href").extract()
-
-    	for i in range(1):#len(parentUrls)-18
+    	
+    	for i in range(len(parentUrls)):#len(parentUrls)-18
 
     		parentFilename = './Data/' + parentTitle[i]
 
     		if(not os.path.exists(parentFilename)):
     			os.makedirs(parentFilename)
-    			print("This path is not exist and already made")
+    		j = i+1
+    		int(j)
+    		print("===========================")
+    		print(j)
+    		subTitle = response.xpath("//div[@id='tab01']/div[{}]//li/a/text()".format(i+1)).extract()
+    		subUrls  = response.xpath("//div[@id='tab01']/div[{}]//li/a/@href".format(i+1)).extract()
+    		print(subTitle)
 
     		for j in range(len(subUrls)):
-    			#subFilename = 
+    	
     			item = SinaNewsItem()
+
+    			subFilename = parentFilename + '/' + subTitle[j]
+
+    			if(not os.path.exists(subFilename)):
+    				os.makedirs(subFilename)
 
     			item['parentTitle'] = parentTitle[i]
     			item['parentUrls']  = parentUrls[i]
+    			item['subTitle'] = subTitle[j]
+    			item['subUrls']  = subUrls[j]
+    			item['subFilename'] = subFilename
 
-    			if_belong = subUrls[j].startswith(item['parentUrls'])
-
-    			if if_belong:
-    				subFilename = parentFilename + '/' + subTitle[j]
-
-    				if(not os.path.exists(subFilename)):
-    					os.makedirs(subFilename)
-
-    				item['subTitle'] = subTitle[j]
-    				item['subUrls']  = subUrls[j]
-    				item['subFilename'] = subFilename
-
-    				items.append(item)
+    			items.append(item)
 
     	for item in items:
     		yield scrapy.Request(url=item['subUrls'],meta = {'meta_1':item},callback = self.second_parse)
