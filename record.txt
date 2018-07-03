@@ -1,0 +1,15 @@
+      //div[@class='info']/./div[2]/p[1]/text()
+title   //div[@class='info']/div[1]/a/span/text()  xuyao pinjie 
+score   ./div[2]//span[@class='rating_num']/text()
+info    ./div[2]/p[1]/text()
+content ./div[2]/p[2]/span/text()
+
+
+ 'info': '导演: 弗兰克·德拉邦特 Frank Darabont\xa0\xa0\xa0''主演: 蒂姆·罗宾斯 Tim Robbins /'
+ '1994\xa0/\xa0美国\xa0/\xa0犯罪 剧情\n''                        ',
+
+
+  'info': '导演: 弗兰克·德拉邦特 Frank Darabont\xa0\xa0\xa0主演: 蒂姆·罗宾斯 Tim Robbins '
+         '/...1994\xa0/\xa0美国\xa0/\xa0犯罪 剧情',
+
+

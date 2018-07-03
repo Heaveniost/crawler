@@ -21,8 +21,9 @@ ITEM_PIPELINES = {
     'example.pipelines.ExamplePipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400,
 }
-
-LOG_LEVEL = 'DEBUG'
+REDIS_HOST = '192.168.2.123'
+REDIS_PORT = 6379
+#LOG_LEVEL = 'DEBUG'
 
 # Introduce an artifical delay to make use of parallelism. to speed up the
 # crawl.
